@@ -19,7 +19,7 @@ app.use(express.json());
 app.use(cookieParser());
 app.use('/uploads', express.static(__dirname + '/uploads'));
 
-mongoose.connect('mongodb+srv://blog:<password>@cluster0.bzlq4js.mongodb.net/');
+mongoose.connect(key);
 
 app.post('/register', async (req, res) => {
     const { username, password } = req.body;
@@ -53,6 +53,7 @@ app.post('/login', async (req, res) => {
     }
 });
 
+<<<<<<< HEAD
 app.get('/profile', (req, res) => {
     const { token } = req.cookies;
     jwt.verify(token, secret, {}, (err, info) => {
@@ -136,3 +137,8 @@ app.get('/post/:id', async (req, res) => {
 
 app.listen(4000);
 //
+=======
+app.listen(4000)
+//
+// blog
+>>>>>>> b8be6907622c04565947e4593f29c4f3f74955fa
