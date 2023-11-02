@@ -1,18 +1,24 @@
-export default function Post(){
+import { formatISO9075 } from "date-fns";
+import { Link } from "react-router-dom";
+
+export default function Post({ _id, title, summary, cover, content, createdAt, author }) {
+
     return (
         <div className="post">
             <div className="image">
-                <img src="https://techcrunch.com/wp-content/uploads/2020/10/gmail-icon-2020-ios.jpg?w=730&crop=1"/>
+                <Link to={`/post/${_id}`}>
+                    <img src={'http://localhost:4000/' + cover} alt="" />
+                </Link>
             </div>
             <div className="texts">
-                <h2>
-                Gmail to enforce harsher rules in 2024 to keep spam from users inboxes
-                </h2>
+                <Link to={`/post/${_id}`}>
+                    <h2>{title}</h2>
+                </Link>
                 <p className="info">
-                    <a className="author">Aditi Maheshwari</a>
-                    <time>2023-10-04 23:06</time>
+                    <a className="author">{author.username}</a>
+                    <time>{formatISO9075(new Date(createdAt))}</time>
                 </p>
-                <p className="summary">Google today is announcing a series of significant changes to how it handles email from bulk senders in an effort to cut down on spam and other unwanted emails. The company says that starting next year, bulk senders will need to authenticate their emails, offer an easy way to unsubscribe and stay under a reported spam threshold.</p>
+                <p className="summary">{summary}</p>
             </div>
         </div>
     );
